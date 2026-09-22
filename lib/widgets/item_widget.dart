@@ -53,19 +53,12 @@ class ItemWidget extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        IconButton(
-                          icon: Icon(
-                            isFav ? Icons.favorite : Icons.favorite_border,
-                            color: Colors.red,
-                            size: isCompact ? 20 : 24,
+                        Text(
+                          item.price,
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.bold,
                           ),
-                          onPressed: () {
-                            if (isFav) {
-                              context.read<Favories>().remove(item);
-                            } else {
-                              context.read<Favories>().add(item);
-                            }
-                          },
                         ),
                       ],
                     ),
@@ -81,13 +74,19 @@ class ItemWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
-                    SizedBox(height: isCompact ? 2 : 8),
-                    Text(
-                      item.price,
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    IconButton(
+                      icon: Icon(
+                        isFav ? Icons.favorite : Icons.favorite_border,
+                        color: Colors.red,
+                        size: isCompact ? 20 : 24,
+                      ),
+                      onPressed: () {
+                        if (isFav) {
+                          context.read<Favories>().remove(item);
+                        } else {
+                          context.read<Favories>().add(item);
+                        }
+                      },
                     ),
                   ],
                 ),
